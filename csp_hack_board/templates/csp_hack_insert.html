@@ -1,0 +1,78 @@
+<meta charset="utf-8">
+
+{% load static %}
+
+<html>
+    <head>
+
+        <title>
+            해킹 동아리 글쓰기
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn_hover_board.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/backstyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/hack_board_title.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/wrapper.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/input_box_de.css' %}">
+
+    <div class="top_bar">
+    <ul class = "menu">
+        <li class="logo_li"><a href = "/main"><img src = "{% static 'img/mainlogo_.png' %}" alt = "main_logo" width = "50" class = "logo"></a></li>
+        <div class="add_margin">
+        <li><a href="/main/">Home</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="/ctfboard">CTF schedule</a></li>
+        <li><a class="active" href="/hackboard">Hacking</a></li>
+        <li><a href="/progboard">Programming</a></li>
+        <li class="log">
+            {% if user.is_authenticated %}
+            <a href=".">{{ user.first_name }}님, 안녕하세요.</a>
+        </li>
+        <li class="inout">
+            <a href="/sign_c/logout">Logout</a>
+        </li>
+        <li class="log">
+            {% else %}
+            <a href="/sign_c/login">Login</a>
+        </li>
+        <li class="inout">
+            <a href="/sign_c/sign">Sign in</a>
+            {% endif %}
+        </li>
+        </div>
+    </ul><br></div>
+
+    </head>
+
+    <body>
+
+        {% if user.last_name != 'hack' and user.last_name != 'admin' %}
+        <script>
+            window.location.replace('/main')
+            alert('Nop! You are not hacking member!')
+        </script>
+        {% endif %}
+
+        <div class="insert_board">
+            <form enctype="multipart/form-data" autocomplete=off method = "POST" action="{% url 'csp_hack_board:csp_hack_insert' %}">
+                {%csrf_token%}
+                <h1>Title</h1>
+                <div>{{ form.title }}
+                    <label class="checkbox"><input name="is_complete" type="radio" value="True"><span class="icon"></span><span class="text">상단고정</span></label>
+                </div>
+                <h1>Content</h1>
+                <div>{{ form.media }}</div>
+                <div class="input_reset">{{ form.content }}</div>
+                <button type="submit">
+                    SAVE
+                </button>
+                <button type="submit" value="BACK" onClick="history.go(-1)">
+                    BACK
+                </button>
+            </form>
+        </div>
+    </body>
+</html>

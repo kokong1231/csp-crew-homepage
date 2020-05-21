@@ -1,0 +1,39 @@
+a {
+    text-decoration: none;
+    color: #404040;
+}
+
+li {
+    list-style: none;
+}
+
+/*BODY*/
+#notice {
+    width: 500px;
+    margin: 0 auto;
+    box-sizing: borader-box;
+    background-color: antiquewhite;
+}
+
+#notice ul {
+    width: 100%;
+}
+
+#notice ul li {
+    line-height: 30px;
+    padding-left: 20px;
+    font-size: 12px;
+}
+
+#notice ul li:nth-child(2n) {
+    background: gainsboro;
+    border-radius: 5px;
+}
+
+#notice ul li span {
+    display: inline-block;
+    float: right;
+    width: 150px;
+    text-align: center;
+    font-size: 12px;
+}

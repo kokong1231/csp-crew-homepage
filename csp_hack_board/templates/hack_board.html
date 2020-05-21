@@ -1,0 +1,120 @@
+<meta charset="utf-8">
+
+{% load static %}
+
+<html>
+    <head>
+
+        <title>
+            해킹동아리 게시판
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn_hover_board.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/backstyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/hack_board_title.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/wrapper.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+
+    <div class="top_bar">
+    <ul class = "menu">
+        <li class="logo_li"><a href = "/main"><img src = "{% static 'img/mainlogo_.png' %}" alt = "main_logo" width = "50" class = "logo"></a></li>
+        <div class="add_margin">
+        <li><a href="/main/">Home</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="/ctfboard">CTF schedule</a></li>
+        <li><a class="active" href="/hackboard">Hacking</a></li>
+        <li><a href="/progboard">Programming</a></li>
+        <li class="log">
+            {% if user.is_authenticated %}
+            <a href=".">{{ user.first_name }}님, 안녕하세요.</a>
+        </li>
+        <li class="inout">
+            <a href="/sign_c/logout">Logout</a>
+        </li>
+        <li class="log">
+            {% else %}
+            <a href="/sign_c/login">Login</a>
+        </li>
+        <li class="inout">
+            <a href="/sign_c/sign">Sign in</a>
+            {% endif %}
+        </li>
+        </div>
+    </ul><br></div>
+
+    </head>
+
+    <body>
+
+        <div class="hack_title">
+            <h1>Hacking Crew</h1>
+        </div>
+
+        <div>
+            <input type = "radio" name = "tabmenu" id = "tab01">
+            <input type = "radio" name = "tabmenu" id = "tab02">
+            <div class = "board_btn" style = "display: block; align-items: center;">
+                <label class="button" for = "tab01"><a href="/hackboard"><strong class="btn_size_board">BOARD</strong></a></label>
+                <label class="button" for = "tab02"><a href="/hackboard/qna"><strong class="btn_size_board">Q & A</strong></a></label>
+            </div>
+        </div>
+
+        <div class="insert_btn_background">
+            <button style="width : 100%;" onclick="location.href='{% url 'csp_hack_board:csp_hack_insert' %}'">
+                글쓰기
+            </button>
+        </div>
+
+        <div class="reset">
+
+            <div id="bod">
+
+                <ul class="style_board_top">
+                    {% for top in top %}
+                    {% if top.is_complete == True %}
+                    <li>
+                            <a href="{% url 'csp_hack_board:csp_hack_detail' pk=top.no %}"><h3>{{ top.title }}</h3>
+                            <h5>작성자 : {{ top.user_id }}</h5>
+                            <div class="top right"><h6>{{ top.end_date }}</h6></div></a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+
+                <ul class="style_board">
+                    {% block content %}
+                    {% for list in posts %}
+                    <li>
+                            <a href="{% url 'csp_hack_board:csp_hack_detail' pk=list.no %}"><h3>{{ list.title }}</h3>
+                            <h5>작성자 : {{ list.user_id }}</h5>
+                            <div class="top right"><h6>{{ list.end_date }}</h6></div></a>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="page-num">
+                        {% if posts.has_previous %}
+                            <a href="?page=1">1...</a>
+                            <a href="?page={{posts.previous_page_number}}">[이전]</a>
+                        {% endif %}
+
+                            {# NowOfTotal #}
+                            <span>{{posts.number}}</span>
+                            <span>/</span>
+                            <span>{{posts.paginator.num_pages}}</span>
+
+                        {% if posts.has_next %}
+                            <a href="?page={{posts.next_page_number}}">[다음]</a>
+                            <a href="?page={{posts.paginator.num_pages}}">...{{posts.paginator.num_pages}}</a>
+                        {% endif %}
+
+                    {% endblock content %}
+                </div>
+            </div>
+            
+        </div>
+        <div style="cursor:pointer;" onclick="window.scrollTo(0,0);"><button style="width : 100%;">TOP</button></div>
+    </body>
+</html>

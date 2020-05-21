@@ -1,0 +1,7 @@
+body{
+    background-image: url(../img/backg.jpg);
+    background-size: 100vw;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}

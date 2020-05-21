@@ -1,0 +1,61 @@
+<meta charset="utf-8">
+
+{% load static %}
+
+<html>
+
+    <head>
+        <title>
+            CSP 회원정보
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mainhome-stly.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/wrapper.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/backstyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn_hover.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/star.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login_page.css' %}">
+
+        <div class="top_bar">
+    <ul class = "menu">
+        <li class="logo_li"><a href = "/main"><img src = "{% static 'img/mainlogo_.png' %}" alt = "main_logo" width = "50" class = "logo"></a></li>
+    </ul><br></div>
+
+    </head>
+
+    {% block container %}
+
+    <body>
+        <div class="user_state">
+            <ul>
+                <li>이름 : {{ user.first_name }}</li>
+                <li>ID : {{ user.username }}</li>
+                <li>
+                    소속 :
+                    {% if user.last_name == 'hack' %}
+                    해킹 동아리
+
+                    {% elif user.last_name == 'prog' %}
+                    프로그래밍 동아리
+
+                    {% elif user.last_name == 'admin' %}
+                    Admin
+
+                    {% endif %}
+                </li>
+            </ul>
+
+            {% if user == user %}
+            <button type="button" onclick = "location.href = '../update'">정보 수정</button>
+            {% else %}
+            <h1>정보를 찾을 수 없습니다.</h1>
+            {% endif %}
+
+        </div>
+    </body>
+
+    {% endblock %}
+
+</html>

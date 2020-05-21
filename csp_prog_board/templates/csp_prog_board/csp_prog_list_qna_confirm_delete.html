@@ -1,0 +1,38 @@
+<meta charset="utf-8">
+
+{% load static %}
+
+<html>
+    <head>
+
+        <title>
+            프로그래밍 동아리 QnA 삭제
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn_hover_board.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/backstyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/hack_board_title.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/wrapper.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+
+    </head>
+
+    <body>
+        {% block main %}
+
+        <section>
+            <div class="delete_board">
+                <form method="POST">
+                    {%csrf_token%}
+
+                    <p>{{csp_prog_list_qna.title}}를 삭제하시겠습니까?</p>
+                    <button type="submit" value="Confirm">Delete</button>
+                </form>
+            </div>
+        </section>
+
+        {% endblock main %}
+    </body>
+</html>

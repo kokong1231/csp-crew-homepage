@@ -1,0 +1,94 @@
+<meta charset="utf-8">
+
+{% load static %}
+
+<html>
+    <head>
+
+        <title>
+            프로그래밍 동아리 QnA 글
+        </title>
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn_hover_board.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/backstyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/hack_board_title.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/wrapper.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+
+    <div class="top_bar">
+    <ul class = "menu">
+        <li class="logo_li"><a href = "/main"><img src = "{% static 'img/mainlogo_.png' %}" alt = "main_logo" width = "50" class = "logo"></a></li>
+        <div class="add_margin">
+        <li><a href="/main/">Home</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="/ctfboard">CTF schedule</a></li>
+        <li><a href="/hackboard">Hacking</a></li>
+        <li><a class="active" href="/progboard">Programming</a></li>
+        <li class="log">
+            {% if user.is_authenticated %}
+            <a href=".">{{ user.first_name }}님, 안녕하세요.</a>
+        </li>
+        <li class="inout">
+            <a href="/sign_c/logout">Logout</a>
+        </li>
+        <li class="log">
+            {% else %}
+            <a href="/sign_c/login">Login</a>
+        </li>
+        <li class="inout">
+            <a href="/sign_c/sign">Sign in</a>
+            {% endif %}
+        </li>
+        </div>
+    </ul><br></div>
+
+    </head>
+{% block main %}
+    <body>
+
+        {% if user.last_name != 'prog' and user.last_name != 'admin' %}
+        <script>
+            window.location.replace('/main')
+            alert('Nop! You are not programming member!')
+        </script>
+        {% endif %}
+
+        <div class="board_margin">
+
+            <section>
+                <div class="grp-text">
+                    <div class="back-g-i">
+                    <h2 class="board-detail-title">
+                        {{ csp_prog_list_qna.title }}
+                    </h2>
+                    <h4 class="board-detail-user">작성자 : {{ csp_prog_list_qna.user_id }}</h4>
+                    <h4 class="board-detail-time">{{ csp_prog_list_qna.end_date }}</h4><hr>
+                    </div>
+                    <div class="back-g-a">
+
+                    <div class="detail-text-box"><p>{{ csp_prog_list_qna.content | safe }}</p><br></div>
+
+                    <h2 class="detail-btn">
+                        <a href="{% url 'csp_prog_board:csp_prog_update_qna' pk=csp_prog_list_qna.pk %}">
+                            <img width="50px" src="{% static 'img/insert.png' %}">
+                        </a>
+
+                        <a href="{% url 'csp_prog_board:csp_prog_delete_qna' pk=csp_prog_list_qna.pk %}">
+                            <img width="50px" src="{% static 'img/dee.png' %}">
+                        </a>
+                    </h2>
+                    </div>
+                    <button type="submit" value="BACK" onClick="history.go(-1)" style="width : 100%;">
+                        BACK
+                    </button>
+                    <div class="back-g-b"></div>
+                </div>
+            </section>
+
+        </div>
+
+    </body>
+{% endblock main %}
+</html>

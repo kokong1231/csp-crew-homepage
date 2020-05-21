@@ -1,0 +1,65 @@
+<meta charset="utf-8">
+
+{% load static %}
+
+<html>
+    <head>
+        <title>
+            CTF 일정
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mainhome-stly.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/wrapper.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/backstyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn_hover.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/star.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/ctf-board.css' %}">
+
+    <div class="top_bar">
+    <ul class = "menu">
+        <li class="logo_li"><a href = "/main"><img src = "{% static 'img/mainlogo_.png' %}" alt = "main_logo" width = "50" class = "logo"></a></li>
+        <div class="add_margin">
+        <li><a href="/main/">Home</a></li>
+        <li><a href="">About</a></li>
+        <li><a class="active" href="/ctfboard">CTF schedule</a></li>
+        <li><a href="/hackboard">Hacking</a></li>
+        <li><a href="/progboard">Programming</a></li>
+        <li class="log">
+            {% if user.is_authenticated %}
+            <a href=".">{{ user.first_name }}님, 안녕하세요.</a>
+        </li>
+        <li class="inout">
+            <a href="/sign_c/logout">Logout</a>
+        </li>
+        <li class="log">
+            {% else %}
+            <a href="/sign_c/login">Login</a>
+        </li>
+        <li class="inout">
+            <a href="/sign_c/sign">Sign in</a>
+            {% endif %}
+        </li>
+        </div>
+    </ul><br></div>
+
+    </head>
+
+    <body>
+
+        <div>
+            <h1 class="main_name">CTF Calender</h1>
+        </div>
+
+        <div>
+            <a href="https://ctftime.org/" target="_blank" id="logo_link"><img src="{% static 'img/ctf_logo.PNG' %}" alt="ctf_site_link" id="logo_size"></a>
+        </div>
+
+        <div class="ctf_board">
+            <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showCalendars=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=ctftime%40gmail.com&amp;color=%232952A3&amp;ctz=Africa%2FAbidjan"
+             style="width: 80%; height: 100%; opacity: 0.9;"></iframe>
+        </div>
+        <div style="cursor:pointer;" onclick="window.scrollTo(0,0);"><button style="width : 100%;">TOP</button></div>
+    </body>
+</html>

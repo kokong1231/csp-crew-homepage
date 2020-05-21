@@ -1,0 +1,53 @@
+<meta charset="utf-8">
+
+{% load static %}
+
+<html>
+    <head>
+        <title>
+            동아리 회원가입
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/wrapper.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/backstyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn_hover.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/star.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login_page.css' %}">
+
+        <div class="top_bar">
+    <ul class = "menu">
+        <li class="logo_li"><a href = "/main"><img src = "{% static 'img/mainlogo_.png' %}" alt = "main_logo" width = "50" class = "logo"></a></li>
+    </ul><br></div>
+
+    </head>
+
+    {% block contents %}
+    <body>
+
+    <div class="sign-page">
+        <h1 class="sign-title">sign up!</h1>
+
+        <form method="post" action="{%url 'sign'%}">
+            {% csrf_token %}
+            <input name="username" type="text" placeholder="Your ID" required autocomplete=off maxlength="16">
+            <br>
+            <input name="password1" type="password" placeholder="Your Password" required autocomplete=off minlength="8">
+            <br>
+            <input name="password2" type="password" placeholder="Confirm Password" required autocomplete=off minlength="8">
+            <br>
+            <input name="first_name" type="text" placeholder="Your Name" required autocomplete=off maxlength="20">
+            <br>
+            <h2 class="baln_title">동아리</h2>
+            <label class="checkbox"><input name="last_name" type="radio" value="hack" required><span class="icon"></span><span class="text">해킹 동아리</span></label>
+            <label class="checkbox baln"><input name="last_name" type="radio" value="prog" required><span class="icon"></span><span class="text">프로그래밍 동아리</span></label>
+            <br>
+            <button type="submit" value="sign up">Sign up!</button>
+        </form>
+    </div>
+
+    </body>
+    {% endblock %}
+
+</html>

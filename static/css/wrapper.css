@@ -1,0 +1,35 @@
+/*header*/
+header{height: 50px; border: none; position: fixed; z-index: 9999; top: 0; left:50;}
+
+.menu {position: fixed; margin-left: 26%}
+
+.menu li{float:left; display: block;}
+
+.menu a{line-height: 38px; color: white; padding: 0 30px; display: block;
+     text-shadow: 3px 3px 2px black;}
+
+
+/*common*/
+.wrapper{margin: 0 auto;}
+
+.clearfix{content: ''; display: block; clear: both;}
+
+
+/*logo*/
+.logo{display: flex; margin-bottom: -60; position: left;}
+
+.top_bar {
+     width: 100%;
+     height: 50px;
+     background-image: url(../img/topbar.png);
+     position: fixed;
+     margin-top: -151px;
+}
+
+.top_bar_ {
+     width: 100%;
+     height: 50px;
+     background-image: url(../img/topbar.png);
+     position: fixed;
+     margin-top: 0px;
+}

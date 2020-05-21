@@ -1,0 +1,94 @@
+input[id="sidemenu_icon"] {
+    display : none;
+}
+
+input[id="sidemenu_icon"] + label {
+    display : block;
+    width : 30px;
+    height : -50px;
+    position : fixed;
+    left : 20px;
+    top : 50%;
+    transition : all .35s;
+    cursor : pointer;
+}
+
+input[id="sidemenu_icon"] + label span {
+    display : block;
+    position : absolute;
+    width : 100%;
+    height : 5px;
+    border-radius : 30px;
+    background : #000;
+    transition : all .35s;
+}
+
+input[id="sidemenu_icon"] + label span:nth-child(1) {
+    top : 0;
+}
+
+input[id="sidemenu_icon"] + label span:nth-child(2) {
+    top : 50%;
+    transform : translateY(-50%);
+}
+
+input[id="sidemenu_icon"] + label span:nth-child(3) {
+    bottom : 0;
+}
+
+input[id="sidemenu_icon"]:checked + label span:nth-child(1) {
+    top:50%;
+    transform : translateY(-50%) rotate(45deg);
+}
+
+input[id="sidemenu_icon"]:checked + label span:nth-child(2) {
+    opacity : 0;
+}
+
+input[id="sidemenu_icon"]:checked + label span:nth-child(3) {
+    bottom : 50%;
+    transform : translateY(50%) rotate(-45deg);
+}
+
+div[class="sidebar"] {
+    width:300px;
+    height : 100%;
+    background : rgba(22, 22 ,22 , 0.7);
+    position : fixed;
+    top : 77px;
+    left : -290px;
+    z-index : 1;
+    transition : all .35s;
+}
+
+input[id="sidemenu_icon"]:checked + label + div {
+    left : 0;
+}
+
+input[id="sidemenu_icon"]:checked + label {
+    z-index : 2;
+    left : 300px;
+}
+
+.sidebar ul {
+    margin : 35% 0 30% 15%;
+}
+
+.sidebar li {
+    margin : 30% 0 30% 0;
+    font-size : 20px;
+}
+
+.sidebar a {
+    color : whitesmoke;
+    padding : 5px;
+}
+
+.sidebar a:hover {
+    background-color : #C6B7DA;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	padding : 5px;
+}

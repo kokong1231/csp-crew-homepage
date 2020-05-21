@@ -1,0 +1,97 @@
+input[type = "radio"]{
+    display: none;
+}
+
+.btn_size {
+    padding: 18 100 18 100;
+}
+
+.btn_size_board {
+    padding: 18 100 18 100;
+}
+
+.btn_ {
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+    padding-top: 50px;
+}
+
+.board_btn {
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+    padding-top: 50px;
+    margin-bottom: 30px;
+}
+
+label[for*="tab"] {
+    display: inline-block;
+    background: #ccc;
+    cursor: pointer;
+}
+
+input[id = "tab01"]:checked ~ .con1 {
+    display:block;
+}
+input[id = "tab02"]:checked ~ .con2 {
+    display:block;
+}
+input[id = "tab03"]:checked ~ .con3 {
+    display:block;
+}
+input[id = "tab04"]:checked ~ .con4 {
+    display:block;
+}
+
+input[id="tab01"]:checked ~ .btn > label[for="tab01"]{
+    background: rgb(173, 204, 143);
+}
+input[id="tab02"]:checked ~ .btn > label[for="tab02"]{
+    background: rgb(173, 204, 143);
+}
+input[id="tab03"]:checked ~ .btn > label[for="tab03"]{
+    background: rgb(173, 204, 143);
+}
+input[id="tab04"]:checked ~ .btn > label[for="tab04"]{
+    background: rgb(173, 204, 143);
+}
+
+button{
+  background:rgba(30, 22, 54, 0.9);
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button:hover{
+  background:#ccc;
+  color:rgba(30, 22, 54, 0.6);
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background:rgba(30, 22, 54, 0.6);
+  transition:400ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}

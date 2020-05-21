@@ -1,0 +1,19 @@
+.ctf_board {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    
+}
+
+#logo_link {
+    width: 200;
+    height: 60;
+    text-align: center;
+    display: block;
+    margin: 0 auto 5%;
+}
+
+#logo_size {
+    width: 200;
+    height: 60;
+}

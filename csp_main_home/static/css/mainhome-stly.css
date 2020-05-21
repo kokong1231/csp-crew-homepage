@@ -1,0 +1,15 @@
+.main_name {
+    margin-top: 10%;
+    font-size: 75px;
+    float: none;
+    text-align: center;
+    color: white;
+}
+
+.sub_title {
+    margin: 20 100 0 100;
+    font-size: 40px;
+    float: none;
+    text-align: center;
+    color: white;
+}

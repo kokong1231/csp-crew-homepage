@@ -1,0 +1,61 @@
+.reset {
+    margin: 0% 13% 10% 13%;
+    padding: 10 5 10 5;
+    background-color: ivory;
+    opacity: 0.8;
+}
+
+#bod{
+    border-style: solid;
+    border-bottom-width: 3px;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
+#num-s {
+    margin-left: 2%;
+}
+
+#title {
+    margin-left: 24%;
+    margin-right: 19%;
+}
+
+#user {
+    margin-left: 5%;
+}
+
+#date {
+    margin-left: 10%;
+}
+
+#view {
+    margin-left: 10%;
+}
+
+.board_margin {
+    text-align: center;
+    position: static;
+    top: 10%;
+    left: 15%;
+    width: 500px;
+    border: 1px;
+    border-radius: 3;
+    background-color: azure;
+    opacity: 0.9;
+}
+
+.delete_board {
+    margin-top: 15%;
+    padding: 5%;
+    background-color: azure;
+    text-align: center;
+    font-size: 30px;
+}
+
+.insert_board {
+    margin: 15% auto 0 auto;
+    background-color: azure;
+    text-align: center;
+}

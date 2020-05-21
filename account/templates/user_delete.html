@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+
+{% load static %}
+{% block container %}
+
+<html>
+
+    <head>
+        <title>
+            CSP 회원 탈퇴
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mainhome-stly.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/wrapper.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/backstyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn_hover.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/star.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login_page.css' %}">
+
+        <div class="top_bar">
+    <ul class = "menu">
+        <li class="logo_li"><a href = "/main"><img src = "{% static 'img/mainlogo_.png' %}" alt = "main_logo" width = "50" class = "logo"></a></li>
+    </ul><br></div>
+
+    </head>
+
+    <body>
+        <div class="delete_page">
+        <h1 class="deepshadow">User delete</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <p>정말로 탈퇴하시겠습니까?</p>
+            <button type="submit" value="탈퇴">회원탈퇴</button>
+        </form>
+        </div>
+    </body>
+</html>
+{% endblock %}

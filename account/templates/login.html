@@ -1,0 +1,46 @@
+<meta charset="utf-8">
+
+{% load static %}
+
+<html>
+    <head>
+        <title>
+            CSP 동아리 로그인
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mainhome-stly.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/wrapper.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/backstyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn_hover.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/star.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login_page.css' %}">
+
+        <div class="top_bar">
+    <ul class = "menu">
+        <li class="logo_li"><a href = "/main"><img src = "{% static 'img/mainlogo_.png' %}" alt = "main_logo" width = "50" class = "logo"></a></li>
+    </ul><br></div>
+
+    </head>
+
+    {% block content %}
+    <body>
+
+    <div class="main-frame">
+        <h1 class="deepshadow">Login</h1>
+
+        <form method="POST" action="{% url 'login'%}">
+            {% csrf_token %}
+            <input class="input-box" name="username" type="text" required autocomplete=off placeholder="ID">
+            <br>
+            <input class="input-box" name="password" type="password" required autocomplete=off placeholder="Password">
+            <br><h5 style="color : whitesmoke;">계정이 없으신가요? <a href="../sign" style="color : #00bfff;">여기</a>를 누르세요.</h5>
+            <br><h5 style="color : red;">{{ error }}</h5><br>
+            <button type="submit" value="sign up">Sign up</button>
+        </form>
+    </div>
+
+    </body>
+    {% endblock %}
+</html>

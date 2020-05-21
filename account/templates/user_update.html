@@ -1,0 +1,48 @@
+<meta charset="utf-8">
+
+{% load static %}
+{% block container %}
+
+<html>
+
+    <head>
+        <title>
+            CSP 회원정보 수정
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mainhome-stly.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/wrapper.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/backstyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn_hover.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/star.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login_page.css' %}">
+
+        <div class="top_bar">
+    <ul class = "menu">
+        <li class="logo_li"><a href = "/main"><img src = "{% static 'img/mainlogo_.png' %}" alt = "main_logo" width = "50" class = "logo"></a></li>
+    </ul><br></div>
+
+    </head>
+
+    <body>
+
+    <h1 class="deepshadow" style="text-align : center; color : whitesmoke">Update</h1>
+
+    <form method="POST" class="user_update_page">
+        {% csrf_token %}
+        <h2>ID</h2>
+        <li><input name="username" type="text" value="{{ user.username }}" autocomplete=off required maxlength="16"></li>
+        <h2>NAME</h2>
+        <li><input name="first_name" type="text" value="{{ user.first_name }}" autocomplete=off required maxlength="20"></li>
+        <button type="submit" value="Submit">SAVE</button>
+        <button type="button" onclick = "location.href = '../change_password'"><h1>비밀번호 변경</h1></button>
+        <button type="button" onclick = "location.href = '../delete'"><h1>회원탈퇴</h1></button>
+    </form>
+
+    </body>
+
+</html>
+
+{% endblock %}

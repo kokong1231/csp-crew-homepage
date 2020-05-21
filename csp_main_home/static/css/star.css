@@ -1,0 +1,9 @@
+@keyframes star{
+    0% {margin-left: 3%;}
+    100% {margin-left: 93%;}
+}
+
+.star {
+    animation: star 10s ease-in infinite alternate;
+    margin-top: 6%;
+}
