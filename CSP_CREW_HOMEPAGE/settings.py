@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$7h#%)a(a^vj3@_!s)o@d3x-%91&b#9b-3grpo*jjr4imamedf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = '*'
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'csp_hack_board',
     'csp_prog_board',
     'csp_ctf_board',
+    'csp_about_board',
     'account',
     'ckeditor',
     'ckeditor_uploader',

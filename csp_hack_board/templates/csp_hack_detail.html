@@ -23,7 +23,7 @@
         <li class="logo_li"><a href = "/main"><img src = "{% static 'img/mainlogo_.png' %}" alt = "main_logo" width = "50" class = "logo"></a></li>
         <div class="add_margin">
         <li><a href="/main/">Home</a></li>
-        <li><a href="">About</a></li>
+        <li><a href="/aboutboard">About</a></li>
         <li><a href="/ctfboard">CTF schedule</a></li>
         <li><a class="active" href="/hackboard">Hacking</a></li>
         <li><a href="/progboard">Programming</a></li>
@@ -86,26 +86,6 @@
                     <div class="back-g-b"></div>
                 </div>
             </section>
-
-            <!--<div class="comment_margin">
-                <hr>
-                <div>
-                    <form class="comment_input" method = "POST" autocomplete=off action="">
-                        {%csrf_token%}
-                        <textarea name="comment" style="resize: none; width:50%; height:100%; margin:1% 0 0 20%;"></textarea>
-                        <input type="submit">
-                    </form>
-                </div>
-
-                {% for comment in hack_comment %}
-                <div>
-                    {{ comment.comment }}
-                    {{ comment.user_name }}
-                    {{ comment.insert_date }}
-                </div>
-                {% endfor %}
-
-            </div>-->
 
         </div>
 

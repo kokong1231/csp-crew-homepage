@@ -15,15 +15,15 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/btn_hover.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/star.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/ctf-board.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/about_page.css' %}">
 
     <div class="top_bar">
     <ul class = "menu">
         <li class="logo_li"><a href = "/main"><img src = "{% static 'img/mainlogo_.png' %}" alt = "main_logo" width = "50" class = "logo"></a></li>
         <div class="add_margin">
         <li><a href="/main/">Home</a></li>
-        <li><a href="/aboutboard">About</a></li>
-        <li><a class="active" href="/ctfboard">CTF schedule</a></li>
+        <li><a class="active" href="#">About</a></li>
+        <li><a href="/ctfboard">CTF schedule</a></li>
         <li><a href="/hackboard">Hacking</a></li>
         <li><a href="/progboard">Programming</a></li>
         <li class="log">
@@ -47,19 +47,11 @@
     </head>
 
     <body>
-
-        <div>
-            <h1 class="main_name">CTF Calender</h1>
+        <div class="about_page">
+            <h1>동아리 홍보 공간입니다. 원하는 이미지, 글을 보내주시면 반영하겠습니다.</h1>
+            <h2>파일은 압축파일만 받겠습니다.</h2>
+            <h3>zhzk1001@hanmail.net</h3>
         </div>
-
-        <div>
-            <a href="https://ctftime.org/" target="_blank" id="logo_link"><img src="{% static 'img/ctf_logo.PNG' %}" alt="ctf_site_link" id="logo_size"></a>
-        </div>
-
-        <div class="ctf_board">
-            <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showCalendars=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=ctftime%40gmail.com&amp;color=%232952A3&amp;ctz=Africa%2FAbidjan"
-             style="width: 80%; height: 100%; opacity: 0.9;"></iframe>
-        </div>
-        <div style="cursor:pointer;" onclick="window.scrollTo(0,0);"><button style="width : 100%;">TOP</button></div>
     </body>
+
 </html>

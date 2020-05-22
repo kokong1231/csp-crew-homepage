@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('csp_on/', admin.site.urls),
     path('main/', include('csp_main_home.urls')),
     path('', include('csp_main_home.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
@@ -31,6 +31,7 @@ urlpatterns = [
     path('hackboard/', include('csp_hack_board.urls')),
     path('progboard/', include('csp_prog_board.urls')),
     path('ctfboard/', include('csp_ctf_board.urls')),
+    path('aboutboard/', include('csp_about_board.urls')),
 
     # account
     path('sign_c/', include('account.urls')),
