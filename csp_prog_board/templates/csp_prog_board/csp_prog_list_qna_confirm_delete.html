@@ -22,6 +22,18 @@
     <body>
         {% block main %}
 
+        {% if user.last_name != 'prog' and user.last_name != 'admin' %}
+        <script>
+            window.location.replace('/main')
+            alert('Nop! You are not hacking member!')
+        </script>
+        {% elif user.username != csp_prog_list_qna.user_name %}
+        <script>
+            window.location.replace('/main')
+            alert('권한이 없습니다.')
+        </script>
+        {% endif %}
+
         <section>
             <div class="delete_board">
                 <form method="POST">

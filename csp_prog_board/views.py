@@ -82,6 +82,7 @@ def check_post(request):
         if form.is_valid():
             prog = form.save(commit=False)
             prog.user_id = request.user.first_name
+            prog.user_name = request.user.username
             prog.csp_prog_save()
             message = "Success!"
             return render(request, template_name, {"message":message})
@@ -159,6 +160,7 @@ def check_post_qna(request):
         if form.is_valid():
             prog = form.save(commit=False)
             prog.user_id = request.user.first_name
+            prog.user_name = request.user.username
             prog.csp_prog_save_qna()
             message = "Success!"
             return render(request, template_name, {"message":message})

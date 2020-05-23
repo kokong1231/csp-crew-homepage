@@ -21,6 +21,7 @@ class Csp_hack_list(models.Model):
     content = RichTextUploadingField(max_length=20000)
     is_complete = models.BooleanField()
     end_date = models.DateTimeField(default=timezone.now())
+    user_name = models.CharField(max_length=50)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -43,6 +44,7 @@ class Csp_hack_list_qna(models.Model):
     content = RichTextUploadingField(max_length=20000)
     is_complete = models.BooleanField()
     end_date = models.DateTimeField(default=timezone.now())
+    user_name = models.CharField(max_length=50)
 
     def publish(self):
         self.published_date = timezone.now()

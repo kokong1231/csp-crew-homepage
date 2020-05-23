@@ -69,7 +69,7 @@
                     <div class="back-g-a">
 
                     <div class="detail-text-box"><p>{{ csp_hack_list_qna.content | safe }}</p><br></div>
-
+                        {% if csp_hack_list_qna.user_name == user.username %}
                     <h2 class="detail-btn">
                         <a href="{% url 'csp_hack_board:csp_hack_update_qna' pk=csp_hack_list_qna.pk %}">
                             <img width="50px" src="{% static 'img/insert.png' %}">
@@ -79,6 +79,7 @@
                             <img width="50px" src="{% static 'img/dee.png' %}">
                         </a>
                     </h2>
+                        {% endif %}
                     </div>
                     <button type="submit" value="BACK" onClick="history.go(-1)" style="width : 100%;">
                         BACK

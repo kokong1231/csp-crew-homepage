@@ -32,8 +32,6 @@
 
     <form method="POST" class="user_update_page">
         {% csrf_token %}
-        <h2>ID</h2>
-        <li><input name="username" type="text" value="{{ user.username }}" autocomplete=off required maxlength="16"></li>
         <h2>NAME</h2>
         <li><input name="first_name" type="text" value="{{ user.first_name }}" autocomplete=off required maxlength="20"></li>
         <button type="submit" value="Submit">SAVE</button>

@@ -69,7 +69,7 @@
                     <div class="back-g-a">
 
                     <div class="detail-text-box"><p>{{ csp_prog_list.content | safe }}</p><br></div>
-
+                        {% if csp_prog_list.user_name == user.username %}
                     <h2 class="detail-btn">
                         <a href="{% url 'csp_prog_board:csp_prog_update' pk=csp_prog_list.pk %}">
                             <img width="50px" src="{% static 'img/insert.png' %}">
@@ -79,6 +79,7 @@
                             <img width="50px" src="{% static 'img/dee.png' %}">
                         </a>
                     </h2>
+                        {% endif %}
                     </div>
                     <button type="submit" value="BACK" onClick="history.go(-1)" style="width : 100%;">
                         BACK

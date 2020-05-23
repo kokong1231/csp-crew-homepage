@@ -109,6 +109,7 @@ def check_post(request):
         if form.is_valid():
             hack = form.save(commit=False)
             hack.user_id = request.user.first_name
+            hack.user_name = request.user.username
             hack.csp_hack_save()
             message = "Success!"
             return render(request, template_name, {"message":message})
@@ -186,6 +187,7 @@ def check_post_qna(request):
         if form.is_valid():
             hack = form.save(commit=False)
             hack.user_id = request.user.first_name
+            hack.user_name = request.user.username
             hack.csp_hack_save_qna()
             message = "Success!"
             return render(request, template_name, {"message":message})

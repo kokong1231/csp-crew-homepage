@@ -54,6 +54,11 @@
             window.location.replace('/main')
             alert('Nop! You are not programming member!')
         </script>
+        {% elif user.username != csp_prog_list.user_name %}
+        <script>
+            window.location.replace('/main')
+            alert('권한이 없습니다.')
+        </script>
         {% endif %}
 
         <form enctype="multipart/form-data" autocomplete=off method = "POST" class="update_board">
