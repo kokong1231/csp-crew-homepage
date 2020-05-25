@@ -359,3 +359,17 @@
 .style_board_top h6:hover {
     color: #009;
 }
+
+.top_btn {
+    cursor: pointer;
+    margin: 10 130 0 130;
+    padding : 0;
+}
+
+.top_btn button {
+    width: 100%;
+    border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+}

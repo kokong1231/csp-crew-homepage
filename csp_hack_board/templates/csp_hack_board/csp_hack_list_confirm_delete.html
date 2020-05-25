@@ -27,7 +27,7 @@
             window.location.replace('/main')
             alert('Nop! You are not hacking member!')
         </script>
-        {% elif user.username != csp_hack_list_qna.user_name %}
+        {% elif user.username != csp_hack_list.user_name %}
         <script>
             window.location.replace('/main')
             alert('권한이 없습니다.')
