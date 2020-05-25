@@ -1,7 +1,18 @@
-body{
-    background-image: url(../img/backg.jpg);
-    background-size: 100vw;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
+@media screen and (min-width: 1280px) {
+    body{
+        background-image: url(../img/backg.jpg);
+        background-size: 100vw;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 1279px) {
+    body{
+        background: linear-gradient(45deg, #003458, #483d8b, #005282);
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+    }
 }
