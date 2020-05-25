@@ -28,7 +28,7 @@ class Csp_hack_board(generic.TemplateView):
 
         return render(request, template_name, {'csp_hack_page': csp_hack_page, 'posts': posts, 'top': hack_page_list})
 
-class Csp_hack_detail(generic.DetailView, FormMixin):
+class Csp_hack_detail(generic.DetailView):
 
     model = Csp_hack_list
     template_name = 'csp_hack_detail.html'
