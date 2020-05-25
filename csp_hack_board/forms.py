@@ -1,5 +1,5 @@
 from django import forms
-from .models import Csp_hack_list, Csp_hack_list_qna, Hack_comment
+from .models import Csp_hack_list, Csp_hack_list_qna
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class Csp_hack_form(forms.ModelForm):
@@ -20,8 +20,3 @@ class Csp_hack_form_qna(forms.ModelForm):
     widgets = {
         'content': forms.CharField(widget=CKEditorUploadingWidget()),
     }
-
-class Hack_comment_form(forms.ModelForm):
-    class Meta:
-        model = Hack_comment
-        fields = ('comment', )

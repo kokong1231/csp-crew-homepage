@@ -56,22 +56,3 @@ class Csp_hack_list_qna(models.Model):
     class Meta:
         managed = False
         db_table = 'hack_board_qna'
-
-
-class Hack_comment(models.Model):
-    user_no = models.AutoField(primary_key=True)
-    comment = models.TextField(max_length=500)
-    user_name = models.CharField(max_length=50)
-    insert_date = models.DateTimeField(default=timezone.now())
-    no = models.ForeignKey(Csp_hack_list, on_delete=models.CASCADE)
-
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
-
-    def hack_comment_save(self):
-        self.save()
-
-    class Meta:
-        managed = False
-        db_table = 'hack_comment'

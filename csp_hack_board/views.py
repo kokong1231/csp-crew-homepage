@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
-from .models import Csp_hack_list, Csp_hack_list_qna, Hack_comment
-from .forms import Csp_hack_form, Csp_hack_form_qna,  Hack_comment_form
+from .models import Csp_hack_list, Csp_hack_list_qna
+from .forms import Csp_hack_form, Csp_hack_form_qna
 
 # Create your views here.
 
@@ -33,32 +33,6 @@ class Csp_hack_detail(generic.DetailView, FormMixin):
     model = Csp_hack_list
     template_name = 'csp_hack_detail.html'
     context_object_name = 'csp_hack_list'
-    form_class = Hack_comment_form
-
-    def get_success_url(self):
-        return reverse('csp_hack_board:csp_hack_detail', kwargs={'pk': self.object.pk})
-
-    def get_context_data(self, **kwargs):
-        context = super(Csp_hack_detail, self).get_context_data(**kwargs)
-        context['comment'] = Hack_comment_form(initial={'comment': '', })
-
-        return context
-
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        form = self.get_form()
-
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-    def form_valid(self, form):
-        comment = form.save(commit=False)
-        comment.user_name = self.request.user.first_name
-        comment.no = get_object_or_404(Csp_hack_list, pk=self.object.pk)
-        comment.save()
-        return super(Csp_hack_detail, self).form_valid(form)
 
 class Csp_hack_update(generic.UpdateView):
 
