@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from .models import Csp_prog_list, Csp_prog_list_qna
-from .forms import Csp_prog_form, Csp_prog_form_qna
+from django.shortcuts import render, get_object_or_404
+from .models import Csp_prog_list, Csp_prog_list_qna, Prog_comment, Prog_comment_qna
+from .forms import Csp_prog_form, Csp_prog_form_qna, Prog_CommentForm, Prog_CommentForm_qna
 
 # Create your views here.
 
@@ -27,11 +27,22 @@ class Csp_prog_board(generic.TemplateView):
 
         return render(request, template_name, {'csp_prog_page': csp_prog_page, 'posts': posts, 'top': prog_page_list})
 
-class Csp_prog_detail(generic.DetailView):
+def csp_prog_detail(request, pk):
+    question = get_object_or_404(Csp_prog_list, pk=pk)
 
-    model = Csp_prog_list
-    template_name = 'csp_prog_detail.html'
-    context_object_name = 'csp_prog_list'
+    if request.method == "POST":
+        comment_form = Prog_CommentForm(request.POST)
+        comment_form.instance.user_name = request.user.first_name
+        comment_form.instance.no_id = pk
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.csp_prog_save()
+
+    comment_form = Prog_CommentForm()
+    comments = question.comments.all()
+
+    return render(request, 'csp_prog_detail.html',
+                  {'csp_prog_list': question, "comments": comments, "comment_form": comment_form})
 
 class Csp_prog_update(generic.UpdateView):
 
@@ -114,11 +125,22 @@ class Csp_prog_board_qna(generic.TemplateView):
 
         return render(request, template_name, {'csp_prog_qna': csp_prog_qna, 'posts': posts, 'top': prog_page_list})
 
-class Csp_prog_detail_qna(generic.DetailView):
+def csp_prog_detail_qna(request, pk):
+    question = get_object_or_404(Csp_prog_list_qna, pk=pk)
 
-    model = Csp_prog_list_qna
-    template_name = 'csp_prog_detail_qna.html'
-    context_object_name = 'csp_prog_list_qna'
+    if request.method == "POST":
+        comment_form = Prog_CommentForm_qna(request.POST)
+        comment_form.instance.user_name = request.user.first_name
+        comment_form.instance.no_id = pk
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.csp_prog_save()
+
+    comment_form = Prog_CommentForm_qna()
+    comments = question.comments.all()
+
+    return render(request, 'csp_prog_detail_qna.html',
+                  {'csp_prog_list_qna': question, "comments": comments, "comment_form": comment_form})
 
 class Csp_prog_update_qna(generic.UpdateView):
 
@@ -169,3 +191,4 @@ def check_post_qna(request):
         template_name = 'csp_prog_insert_qna.html'
         form = Csp_prog_form_qna
         return render(request, template_name, {"form" : form})
+

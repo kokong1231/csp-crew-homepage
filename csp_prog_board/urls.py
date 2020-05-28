@@ -1,4 +1,5 @@
 from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
@@ -10,7 +11,7 @@ app_name = 'csp_prog_board'
 urlpatterns = [
     url(r'^$', views.Csp_prog_board.as_view(), name='csp_prog_board'),
     url(r'^insert/$', views.check_post, name='csp_prog_insert'),
-    url(r'^(?P<pk>[0-9]+)/detail/$', views.Csp_prog_detail.as_view(), name='csp_prog_detail'),
+    path('<int:pk>/detail/', views.csp_prog_detail, name='csp_prog_detail'),
     url(r'^(?P<pk>[0-9]+)/update/$', views.Csp_prog_update.as_view(), name='csp_prog_update'),
     url(r'^(?P<pk>[0-9]+)/delete/$', views.Csp_prog_delete.as_view(), name='csp_prog_delete'),
     url(r'^nop/$', views.Nop.as_view(), name='nop'),
@@ -18,7 +19,7 @@ urlpatterns = [
     # QnA
     url(r'^qna/$', views.Csp_prog_board_qna.as_view(), name='csp_prog_board_qna'),
     url(r'^qna/insert/$', views.check_post_qna, name='csp_prog_insert_qna'),
-    url(r'^qna/(?P<pk>[0-9]+)/detail/$', views.Csp_prog_detail_qna.as_view(), name='csp_prog_detail_qna'),
+    path('qna/<int:pk>/detail/', views.csp_prog_detail_qna, name='csp_prog_detail_qna'),
     url(r'^qna/(?P<pk>[0-9]+)/update/$', views.Csp_prog_update_qna.as_view(), name='csp_prog_update_qna'),
     url(r'^qna/(?P<pk>[0-9]+)/delete/$', views.Csp_prog_delete_qna.as_view(), name='csp_prog_delete_qna'),
 ]

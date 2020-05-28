@@ -35,6 +35,24 @@ class Csp_hack_list(models.Model):
         db_table = 'hack_board'
 
 
+class Hack_comment(models.Model):
+    no = models.ForeignKey(Csp_hack_list, on_delete=models.CASCADE, related_name='comments')
+    user_no = models.AutoField(primary_key=True)
+    comment = models.TextField(max_length=1000)
+    insert_date = models.DateTimeField(default=timezone.now())
+    user_name = models.CharField(max_length=50)
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def csp_hack_save(self):
+        self.save()
+
+    class Meta:
+        managed = False
+        db_table = 'hack_comment'
+
 
 class Csp_hack_list_qna(models.Model):
     no = models.AutoField(primary_key=True)
@@ -56,3 +74,21 @@ class Csp_hack_list_qna(models.Model):
     class Meta:
         managed = False
         db_table = 'hack_board_qna'
+
+class Hack_comment_qna(models.Model):
+    no = models.ForeignKey(Csp_hack_list_qna, on_delete=models.CASCADE, related_name='comments')
+    user_no = models.AutoField(primary_key=True)
+    comment = models.TextField(max_length=1000)
+    insert_date = models.DateTimeField(default=timezone.now())
+    user_name = models.CharField(max_length=50)
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def csp_hack_save(self):
+        self.save()
+
+    class Meta:
+        managed = False
+        db_table = 'hack_comment_qna'

@@ -34,7 +34,23 @@ class Csp_prog_list(models.Model):
         managed = False
         db_table = 'prog_board'
 
+class Prog_comment(models.Model):
+    no = models.ForeignKey(Csp_prog_list, on_delete=models.CASCADE, related_name='comments')
+    user_no = models.AutoField(primary_key=True)
+    comment = models.TextField(max_length=1000)
+    insert_date = models.DateTimeField(default=timezone.now())
+    user_name = models.CharField(max_length=50)
 
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def csp_prog_save(self):
+        self.save()
+
+    class Meta:
+        managed = False
+        db_table = 'prog_comment'
 
 class Csp_prog_list_qna(models.Model):
     no = models.AutoField(primary_key=True)
@@ -56,3 +72,21 @@ class Csp_prog_list_qna(models.Model):
     class Meta:
         managed = False
         db_table = 'prog_board_qna'
+
+class Prog_comment_qna(models.Model):
+    no = models.ForeignKey(Csp_prog_list_qna, on_delete=models.CASCADE, related_name='comments')
+    user_no = models.AutoField(primary_key=True)
+    comment = models.TextField(max_length=1000)
+    insert_date = models.DateTimeField(default=timezone.now())
+    user_name = models.CharField(max_length=50)
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def csp_prog_save(self):
+        self.save()
+
+    class Meta:
+        managed = False
+        db_table = 'prog_comment_qna'

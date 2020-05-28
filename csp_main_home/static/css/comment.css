@@ -1,0 +1,48 @@
+.comment_input input[type="text"] {
+  width: 85%;
+  height: 100%;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+.comment_input input[type="text"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.comment_input input[type='submit'] {
+    width : 14%;
+    height : 40px;
+    background-color : rgba(30, 22, 54, 0.8);
+    color : whitesmoke;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	transition: 0.3s;
+}
+
+.comment_input input[type='submit']:hover {
+    background-color : whitesmoke;
+    color : gray;
+    transition: 0.3s;
+}
+
+.comment_text {
+    width : 70%;
+}
+
+.comment_name {
+    width : 20%;
+    font-size : 13px;
+}
+
+.comment_date {
+    width : 10%;
+    font-size : 10px;
+}

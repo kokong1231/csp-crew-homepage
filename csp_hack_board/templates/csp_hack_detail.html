@@ -16,7 +16,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/wrapper.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/input_box_de.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/comment.css' %}">
 
     <input type="checkbox" id="top_icon">
         <label for="top_icon">
@@ -88,7 +88,25 @@
                     </h2>
                         {% endif %}
                     </div>
-                    <button type="submit" value="BACK" onClick="history.go(-1)" style="width : 100%;">
+
+                    <form method="POST" class="comment_input">
+                    {% csrf_token %}
+                        <input type="text" name="comment" maxlength="1000">
+                        <input type="submit" value="Comment">
+
+                    </form>
+                    <hr>
+                    <table>
+                        {% for comment in comments %}
+                        <tr>
+                            <td class="comment_text">{{ comment.comment }}</td>
+                            <td class="comment_name">{{ comment.user_name }}</td>
+                            <td class="comment_date">{{ comment.insert_date }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <hr>
+                    <button type="submit" value="BACK" onclick = "location.href = '/hackboard' " style="width : 100%;">
                         BACK
                     </button>
                     <div class="back-g-b"></div>
