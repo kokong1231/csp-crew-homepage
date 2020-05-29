@@ -93,8 +93,8 @@
                     {% for list in posts %}
                     <li>
                             <a href="{% url 'csp_prog_board:csp_prog_detail' pk=list.no %}"><h3>{{ list.title }}</h3>
-                            <h5>{{ list.end_date }}</h5>
-                            <div class="top right"><h6>작성자 : {{ list.user_id }}</h6></div></a>
+                            <h5>작성자 : {{ list.user_id }}</h5>
+                            <div class="top right"><h6>{{ list.end_date }}</h6></div></a>
                     </li>
                     {% endfor %}
                 </ul>
