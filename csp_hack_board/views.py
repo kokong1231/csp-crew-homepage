@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Csp_hack_list, Csp_hack_list_qna, Hack_comment, Hack_comment_qna
 from .forms import Csp_hack_form, Csp_hack_form_qna, Hack_CommentForm, Hack_CommentForm_qna
 
@@ -34,12 +34,10 @@ def csp_hack_detail(request, pk):
         comment_form = Hack_CommentForm(request.POST)
         comment_form.instance.user_name = request.user.first_name
         comment_form.instance.no_id = pk
+        comment_form.instance.user_id = request.user.username
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.csp_hack_save()
-
-        if request.delete_comment == 1:
-            comment_form.delete()
 
     comment_form = Hack_CommentForm()
     comments = question.comments.all()
@@ -135,6 +133,7 @@ def csp_hack_detail_qna(request, pk):
         comment_form = Hack_CommentForm_qna(request.POST)
         comment_form.instance.user_name = request.user.first_name
         comment_form.instance.no_id = pk
+        comment_form.instance.user_id = request.user.username
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.csp_hack_save()
@@ -194,3 +193,73 @@ def check_post_qna(request):
         template_name = 'csp_hack_insert_qna.html'
         form = Csp_hack_form_qna
         return render(request, template_name, {"form" : form})
+
+def comment_update(request, comment_id):
+    comment = get_object_or_404(Hack_comment, pk=comment_id)
+
+    if request.user.is_authenticated == False:
+        return render(request, 'nop.html', {"message": "Nop! Login First."})
+
+    elif request.user.last_name != 'hack' and request.user.last_name != 'admin':
+        return render(request, 'nop.html', {"message": "Nop! You are not hacking member!"})
+
+    if request.method == "POST":
+        form = Hack_CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('/hackboard/close/')
+    else:
+        form = Hack_CommentForm(instance=comment)
+    return render(request,'hack_comment_update.html', {'form':form, 'hack_comment':comment})
+
+def comment_delete(request, pk, comment_id):
+    comment = get_object_or_404(Hack_comment, pk=comment_id)
+
+    if request.user.is_authenticated == False:
+        return render(request, 'nop.html', {"message": "Nop! Login First."})
+
+    elif request.user.last_name != 'hack' and request.user.last_name != 'admin':
+        return render(request, 'nop.html', {"message": "Nop! You are not hacking member!"})
+
+    if request.method == "POST":
+        comment.delete()
+        return redirect('/hackboard/' + str(pk) + '/detail/')
+    else:
+        return render(request, 'hack_comment_delete.html', {'object':comment})
+
+def closed_page(request):
+    template_name = 'closed_page.html'
+    return render(request, template_name)
+
+def comment_update_qna(request, comment_id):
+    comment = get_object_or_404(Hack_comment_qna, pk=comment_id)
+
+    if request.user.is_authenticated == False:
+        return render(request, 'nop.html', {"message": "Nop! Login First."})
+
+    elif request.user.last_name != 'hack' and request.user.last_name != 'admin':
+        return render(request, 'nop.html', {"message": "Nop! You are not hacking member!"})
+
+    if request.method == "POST":
+        form = Hack_CommentForm_qna(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('/hackboard/close/')
+    else:
+        form = Hack_CommentForm(instance=comment)
+    return render(request,'hack_comment_update.html', {'form':form, 'hack_comment':comment})
+
+def comment_delete_qna(request, pk, comment_id):
+    comment = get_object_or_404(Hack_comment_qna, pk=comment_id)
+
+    if request.user.is_authenticated == False:
+        return render(request, 'nop.html', {"message": "Nop! Login First."})
+
+    elif request.user.last_name != 'hack' and request.user.last_name != 'admin':
+        return render(request, 'nop.html', {"message": "Nop! You are not hacking member!"})
+
+    if request.method == "POST":
+        comment.delete()
+        return redirect('/hackboard/qna/' + str(pk) + '/detail/')
+    else:
+        return render(request, 'hack_comment_delete.html', {'object':comment})

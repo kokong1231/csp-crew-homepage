@@ -35,7 +35,7 @@
         <li><a class="active" href="/progboard">Programming</a></li>
         <li class="log">
             {% if user.is_authenticated %}
-            <a href=".">{{ user.first_name }}님, 안녕하세요.</a>
+            <a href="/sign_c/user">{{ user.first_name }}님, 안녕하세요.</a>
         </li>
         <li class="inout">
             <a href="/sign_c/logout">Logout</a>
@@ -94,15 +94,22 @@
                         <input type="submit" value="Comment">
 
                     </form>
-
+                    <hr>
                     <table>
                         {% for comment in comments %}
                         <tr>
-                            <td>{{ comment.comment }} {{ comment.user_name }}</td>
+                            <td class="comment_text">{{ comment.comment }}</td>
+                            <td class="comment_name">{{ comment.user_name }}</td>
+                            <td class="comment_date">{{ comment.insert_date }}</td>
+                            {% if comment.user_id == user.username %}
+                            <td class="comment_btn"><input type="submit" value="삭제" onclick="location.href = 'comment/delete/{{ comment.user_no }}'"></td>
+                            <td class="comment_btn"><input type="submit" value="수정" onclick="window.open('/progboard/comment/update/{{ comment.user_no }}','댓글 수정','width=320,height=230,location=no,status=no,scrollbars=yes');"></td>
+                            {% endif %}
                         </tr>
                         {% endfor %}
                     </table>
-                    <button type="submit" value="BACK" onclick = "location.href = '/progboard' " style="width : 100%;">
+                    <hr>
+                    <button type="submit" value="BACK" onclick = "location.href = '/progboard'" style="width : 100%;">
                         BACK
                     </button>
                     <div class="back-g-b"></div>

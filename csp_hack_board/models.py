@@ -41,6 +41,7 @@ class Hack_comment(models.Model):
     comment = models.TextField(max_length=1000)
     insert_date = models.DateTimeField(default=timezone.now())
     user_name = models.CharField(max_length=50)
+    user_id = models.CharField(max_length=150)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -81,6 +82,7 @@ class Hack_comment_qna(models.Model):
     comment = models.TextField(max_length=1000)
     insert_date = models.DateTimeField(default=timezone.now())
     user_name = models.CharField(max_length=50)
+    user_id = models.CharField(max_length=150)
 
     def publish(self):
         self.published_date = timezone.now()

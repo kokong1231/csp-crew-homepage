@@ -22,6 +22,15 @@ urlpatterns = [
     path('qna/<int:pk>/detail/', views.csp_prog_detail_qna, name='csp_prog_detail_qna'),
     url(r'^qna/(?P<pk>[0-9]+)/update/$', views.Csp_prog_update_qna.as_view(), name='csp_prog_update_qna'),
     url(r'^qna/(?P<pk>[0-9]+)/delete/$', views.Csp_prog_delete_qna.as_view(), name='csp_prog_delete_qna'),
+
+    #comment
+    path('<int:pk>/detail/comment/delete/<int:comment_id>/', views.comment_delete, name="comment_delete"),
+    path('comment/update/<int:comment_id>/', views.comment_update, name="comment_update"),
+    path('qna/<int:pk>/detail/comment/delete/<int:comment_id>/', views.comment_delete_qna, name="comment_delete_qna"),
+    path('qna/comment/update/<int:comment_id>/', views.comment_update_qna, name="comment_update_qna"),
+
+    #action
+    path('close/', views.closed_page, name="closed_page")
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

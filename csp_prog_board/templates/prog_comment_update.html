@@ -1,0 +1,36 @@
+<meta charset="utf-8">
+
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/btn.css' %}">
+    </head>
+
+    <body style="background-color:rgba(30, 22, 54, 0.9);">
+        {% block content %}
+
+        {% if user.last_name != 'prog' and user.last_name != 'admin' %}
+        <script>
+            window.location.replace('/main')
+            alert('Nop! You are not hacking member!')
+        </script>
+        {% elif user.username != prog_comment.user_id %}
+        <script>
+            self.close();
+            alert('Nop!')
+        </script>
+        {% endif %}
+
+        <form action="" method = "post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{ form.comment }}
+            </table>
+            <button type="submit" value="Write" style="width : 100%;">Update</button>
+
+        </form>
+
+        {% endblock %}
+    </body>
+</html>

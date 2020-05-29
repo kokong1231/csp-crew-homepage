@@ -6,7 +6,7 @@
     <head>
 
         <title>
-            프로그래밍 동아리 QnA 수정
+            프로그래밍 동아리 댓글 삭제
         </title>
 
         <link rel="stylesheet" type="text/css" href="{% static 'css/btn.css' %}">
@@ -16,7 +16,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/wrapper.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/notice.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/input_box_de.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/comment.css' %}">
 
     <input type="checkbox" id="top_icon">
         <label for="top_icon">
@@ -54,37 +54,32 @@
     </head>
 
     <body>
+        {% block main %}
 
         {% if user.last_name != 'prog' and user.last_name != 'admin' %}
         <script>
             window.location.replace('/main')
-            alert('Nop! You are not programming member!')
+            alert('Nop! You are not hacking member!')
         </script>
-        {% elif user.username != csp_prog_list_qna.user_name %}
+        {% elif user.username != object.user_id and user.last_name != 'admin' %}
         <script>
             window.location.replace('/main')
             alert('권한이 없습니다.')
         </script>
         {% endif %}
 
-        <form enctype="multipart/form-data" autocomplete=off method = "POST" class="update_board">
-            {%csrf_token%}
-            <div><h1>Title</h1>
-                    {% if csp_prog_list_qna.is_complete == False or csp_prog_list_qna.is_complete == Null %}
-                    <label class="checkbox"><input name="is_complete" type="checkbox" value="True"><span class="icon"></span><span class="text">상단고정</span></label>
-                    {% elif csp_prog_list_qna.is_complete == True %}
-                    <label class="checkbox"><input name="is_complete" type="checkbox" value="False"><span class="icon"></span><span class="text">고정해제</span></label>
-                    {% endif %}
-            </div>
-            {{ form.title }}
-            <h1>Content</h1>
-            {{ form.media }}
-            {{ form.content }}
-            <br>
-            <button type="submit">
-                Update
-            </button>
-        </form>
+        <section>
+            <div class="delete_board">
+                <form method="POST">
+                    {%csrf_token%}
 
+                    <p>댓글을 삭제하시겠습니까?</p>
+                    <button type="submit" value="Confirm">Delete</button>
+                </form>
+            </div>
+        </section>
+
+        {% endblock main %}
     </body>
+
 </html>

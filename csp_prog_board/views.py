@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Csp_prog_list, Csp_prog_list_qna, Prog_comment, Prog_comment_qna
 from .forms import Csp_prog_form, Csp_prog_form_qna, Prog_CommentForm, Prog_CommentForm_qna
 
@@ -34,6 +34,7 @@ def csp_prog_detail(request, pk):
         comment_form = Prog_CommentForm(request.POST)
         comment_form.instance.user_name = request.user.first_name
         comment_form.instance.no_id = pk
+        comment_form.instance.user_id = request.user.username
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.csp_prog_save()
@@ -132,6 +133,7 @@ def csp_prog_detail_qna(request, pk):
         comment_form = Prog_CommentForm_qna(request.POST)
         comment_form.instance.user_name = request.user.first_name
         comment_form.instance.no_id = pk
+        comment_form.instance.user_id = request.user.username
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.csp_prog_save()
@@ -192,3 +194,77 @@ def check_post_qna(request):
         form = Csp_prog_form_qna
         return render(request, template_name, {"form" : form})
 
+
+def comment_update(request, comment_id):
+    comment = get_object_or_404(Prog_comment, pk=comment_id)
+
+    if request.user.is_authenticated == False:
+        return render(request, 'nop.html', {"message": "Nop! Login First."})
+
+    elif request.user.last_name != 'prog' and request.user.last_name != 'admin':
+        return render(request, 'nop.html', {"message": "Nop! You are not programming member!"})
+
+    if request.method == "POST":
+        form = Prog_CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('/progboard/close/')
+    else:
+        form = Prog_CommentForm(instance=comment)
+    return render(request, 'prog_comment_update.html', {'form': form, 'prog_comment': comment})
+
+
+def comment_delete(request, pk, comment_id):
+    comment = get_object_or_404(Prog_comment, pk=comment_id)
+
+    if request.user.is_authenticated == False:
+        return render(request, 'nop.html', {"message": "Nop! Login First."})
+
+    elif request.user.last_name != 'prog' and request.user.last_name != 'admin':
+        return render(request, 'nop.html', {"message": "Nop! You are not programming member!"})
+
+    if request.method == "POST":
+        comment.delete()
+        return redirect('/progboard/' + str(pk) + '/detail/')
+    else:
+        return render(request, 'prog_comment_delete.html', {'object': comment})
+
+
+def closed_page(request):
+    template_name = 'closed_page.html'
+    return render(request, template_name)
+
+
+def comment_update_qna(request, comment_id):
+    comment = get_object_or_404(Prog_comment_qna, pk=comment_id)
+
+    if request.user.is_authenticated == False:
+        return render(request, 'nop.html', {"message": "Nop! Login First."})
+
+    elif request.user.last_name != 'prog' and request.user.last_name != 'admin':
+        return render(request, 'nop.html', {"message": "Nop! You are not programming member!"})
+
+    if request.method == "POST":
+        form = Prog_CommentForm_qna(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('/progboard/close/')
+    else:
+        form = Prog_CommentForm(instance=comment)
+    return render(request, 'prog_comment_update.html', {'form': form, 'prog_comment': comment})
+
+
+def comment_delete_qna(request, pk, comment_id):
+    comment = get_object_or_404(Prog_comment_qna, pk=comment_id)
+
+    if request.user.is_authenticated == False:
+        return render(request, 'nop.html', {"message": "Nop! Login First."})
+
+    elif request.user.last_name != 'prog' and request.user.last_name != 'admin':
+        return render(request, 'nop.html', {"message": "Nop! You are not programming member!"})
+
+    if request.method == "POST":
+        comment.delete()
+        return redirect('/progboard/qna/' + str(pk) + '/detail/')
+    else:
+        return render(request, 'prog_comment_delete.html', {'object': comment})
