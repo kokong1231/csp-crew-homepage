@@ -31,10 +31,15 @@
 .delete_board {
     margin-top: 15%;
     padding: 5%;
-    background-color: azure;
+    background-color: whitesmoke;
     text-align: center;
     font-size: 30px;
     margin : 10% 10% 3% 10%;
+    border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	opacity : 0.9;
 }
 
 .insert_board {
